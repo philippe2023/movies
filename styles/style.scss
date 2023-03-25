@@ -54,14 +54,18 @@ img {
     top: 0;
     right: .75em;
     font-weight: bold;
+    z-index: 100;
     font-size: 1.125rem;
     background: rgba(0, 0, 0, .65);
     padding: .5em .5em .75em;
     -webkit-clip-path: polygon(0% 0%, 100% 0, 100% 100%, 50% 85%, 0% 100%);
     clip-path: polygon(0% 0%, 100% 0, 100% 100%, 50% 85%, 0% 100%);
+    transition: transform 250ms ease-out;
 }
 
 .front {
+    transition: 250ms;
+
     .thumbnail {
         border-radius: var(--br);
     }
@@ -88,5 +92,75 @@ img {
 }
 
 .back {
-    display: none;
+    opacity: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    .streaming-info {
+        
+    }
+}
+
+.background {
+    background: #234;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    transform: scale(.2, .9);
+    opacity: 0;
+    border-radius: var(--br);
+}
+
+.card:hover {
+    .rank{
+        transform: translate(140%, -80%);
+        transition: 250ms ease-in;
+    }
+    .front{
+        transform: translateY(-25%) scale(.8);
+        .name {
+            animation: movieName 250ms forwards;
+        }
+        .stats {
+            opacity: 0;
+        }
+    }
+    .back {
+        opacity: 1;
+    }
+    .background {
+        transition: 
+            transform 200ms cubic-bezier(.20, 1.00, .80, 1.00);
+            opacity: 100ms linear;
+        opacity: 1;
+        transform: scale(1.4, 1.2);
+    }
+}
+
+@keyframes movieName {
+    0% {
+        text-align: left;
+        opacity: 1;
+    }
+
+    20% {
+        text-align: left;
+        opacity: 0;
+    }
+
+    50% {
+        text-align: center;
+        opacity: 0;
+        transform: scale(1.2);
+    }
+
+    100% {
+        text-align: center;
+        opacity: 1;
+    }
 }
